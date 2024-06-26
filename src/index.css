@@ -1,0 +1,513 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+:root {
+  --popup-main-color:white ;
+  --popup-light-color:white ;
+  --popup-dark-color:white;
+  
+  --popup-mid-width: 20px;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.srg-calendar  .rbc-toolbar .rbc-btn-group{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right : 10px;
+
+}
+
+.srg-calendar  .rbc-toolbar .rbc-toolbar-label{
+  margin-top: 10px;
+  
+}
+
+
+.srg-calendar  .rbc-toolbar .rbc-toolbar-label {
+font-size: 1.3rem;
+    font-weight: 600
+}
+.srg-calendar .rbc-header{
+  background-color: var(--popup-main-color);
+  padding: 5px 3px !important;
+  font-weight: 600 !important;
+}
+
+.srg-calendar  .rbc-event,.srg-calendar  .rbc-day-slot .rbc-background-event{
+  /* background-color: #1D4B76 !important; */
+}
+ 
+
+/* Define overlay styles */
+.srg-calendar  .popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+/* Define popup content styles */
+.srg-calendar  .popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  width: 25rem;
+  max-height: 80%;
+  overflow: auto;
+}
+
+/* Optionally style popup title and close button */
+.srg-calendar  .popup-content h2 {
+  margin-top: 0;
+}
+
+
+
+
+/* .rbc-time-header-cell */
+.srg-calendar  .rbc-today{
+  background-color: var(--popup-light-color) !important;
+  color: white !important;
+}
+
+.srg-calendar .rbc-header{
+  color: white;
+}
+
+.srg-calendar .popup-header{
+display: flex;
+justify-content: space-between;
+}
+.srg-calendar .categoryNabgorg{
+  background-color: var(--popup-main-color);
+  color: white;
+  padding: 4px;
+  font-weight: normal;
+ font-size: 1rem;
+  border-radius: 4px;
+}
+
+.srg-calendar .categoryNabggrn{
+  background-color: maroon;
+  color: white;
+  padding: 4px;
+  font-weight: normal;
+ font-size: 1rem;
+  border-radius: 4px;
+}
+
+.srg-calendar  .closebtn{
+  float: right;
+}
+
+.srg-calendar  .popup-left{
+  display: flex;
+}
+
+.srg-calendar .rbc-agenda-view table.rbc-agenda-table thead > tr > th:not(:last-child) {
+width: 97.5px !important;
+/* background-color: #4CAF50; */
+}
+.srg-calendar .rbc-agenda-view table.rbc-agenda-table tbody > tr > td:not(:last-child)  {
+  width: 97.5px !important;
+  /* background-color: tomato; */
+}
+.srg-calendar .rbc-agenda-view table.rbc-agenda-table .rbc-agenda-time-cell {
+  padding-right: 17px !important;
+}
+.popup-start{
+  width: 5rem;
+    white-space: nowrap;
+    vertical-align: top;
+    font-weight: 600;
+}
+
+.srg-calendar  .rbc-event.rbc-background-event{
+  z-index: 2;
+}
+.srg-calendar  .rbc-date-cell.rbc-now{
+  color: white;
+}
+.srg-calendar  .popup-content h2{
+  margin-bottom: 0 !important;
+  /* color: #0C6AC1; */
+}
+
+.srg-calendar h6{
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.srg-calendar.popup-content h3{
+  /* margin: 0.4rem 0rem; */
+  /* color: #7fc1ff; */
+  font-weight: 500;
+  
+}
+.rbc-overlay{
+  display: none;
+}
+.rbc-overlay .rbc-overlay-header {
+position: sticky;
+top:0;
+background: white;
+padding: 6px 10px;
+background-color: var(--popup-light-color);
+color: white;
+}
+
+.srg-calendar .rbc-show-more{
+color: var(--popup-main-color);
+}
+
+.srg-calendar .rbc-show-more:hover{
+  color: var(--popup-light-color);
+}
+
+
+ .rbc-overlay{
+  left: 0 !important;
+  right: 0;
+  top: 20% !important;
+  /* bottom: 0; */
+  max-width: 300px;
+  margin:auto;
+  max-height: 395px;
+  overflow: auto;
+  padding-top: 0 !important;
+}
+
+.srg-calendar .customdatepicker{
+  display: flex;
+  justify-content: center;
+}
+
+.srg-calendar  .calendar-height{
+  height: 89vh !important;
+}
+
+.popup-mid{
+  width: 2rem;
+  display: block;
+  text-align: center;
+}
+.popup-start {
+  /* text-decoration: underline; */
+  /* border-bottom: 1px solid black; */
+
+}
+@media screen and (max-width:440px) {
+  .srg-calendar  .popup-mid{
+    width: 1rem;
+  }
+}
+
+
+.srg-calendar  button{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.srg-calendar  .rbc-off-range-bg{
+  background: #f0f8ff;
+}
+
+
+.srg-calendar .rbc-time-content .rbc-today{
+  /* background: rgb(173, 220, 231) !important; */
+}
+
+.srg-calendar .rbc-btn-group > button:nth-child(4){
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+
+.srg-calendar .rbc-btn-group > button:nth-child(3){
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+.srg-calendar .rbc-btn-group > button:nth-child(3){
+  margin-right: 10px;
+}
+
+
+.srg-calendar .loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* or adjust as needed */
+}
+
+.srg-calendar .loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--popup-light-color); /* Change color as needed */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+.srg-calendar .copyrightfooter{
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ /* padding: auto; */
+}
+
+.unauthorized-text{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  font-weight: 600;
+  /* background-color: #007bff; */
+}
+
+.copyrightimg{
+  height:5vh;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.copyrighttext{
+  height:2vh;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+}
+
+@media screen and (max-width:768px) {
+  .srg-calendar  .rbc-toolbar .rbc-btn-group{
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .srg-calendar  .rbc-toolbar .rbc-toolbar-label{
+    display: block !important;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .srg-calendar .calendar-height{
+    height: 94vh !important;
+    
+  }
+
+  .srg-calendar .copyrightfooter{
+    height: 5vh;
+    margin-top: 5px;
+  }
+
+  .srg-calendar .copyrightimg{
+    height:3.5vh;
+  }
+
+  .srg-calendar .copyrighttext{
+    font-size: 10px;
+  }
+
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.srg-calendar  .rbc-event, .srg-calendar  .rbc-day-slot .rbc-background-event{
+  background-color:white !important;
+
+  background: white !important;
+}
+.rbc-event.rbc-selected,.rbc-event, .rbc-day-slot .rbc-background-event{
+  background-color:inherit !important;
+  background: inherit !important;
+}
+
+.rbc-overlay > * + * {
+  margin: 0;
+}
+
+.svgcss{
+  /* color: red !important; */
+  /* fill: #0056b3 !important; */
+  /* background-color: #007bff; */
+  /* padding: 4px; */
+  cursor: pointer;
+
+}
+
+@media (min-width: 1200px) {
+ .srg-calendar .container {
+      /* width: 1170px; */
+      width: 100%;
+  }
+}
+
+
+ .srg-maroon{
+  background: maroon;
+   color: white;
+    height: 100%;
+    border-radius:4px ;
+    padding:4px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+.srg-byId{
+    background:var(--popup-dark-color);
+    color: white;
+     height: 100%;
+     border-radius:4px ;
+     padding:4px;
+     display: block;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+    cursor: pointer;
+
+  }
+
+/* not related to theme */
+  /* .srg-calendar  .popup-content button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  } */
+  
+  /* .srg-calendar  .popup-content button:hover {
+    background-color: #0056b3;
+  } */
+
+  .srg-calendar .rbc-toolbar button{
+    border-color: #128cb7 !important;
+  }
+
+
+  /* Modal.css */
+  .srg-calendar .backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+.srg-calendar .modal {
+  position: fixed;
+  background: white;
+  z-index: 6;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  /* max-height: 80vh; */
+  max-width: 80%;
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  left: 0 !important;
+  right: 0;
+  top: 20% !important;
+  /* bottom: 0; */
+  margin: auto;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 0 !important;
+}
+
+.srg-calendar .modal-header,
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+}
+
+.srg-calendar .modal-header{
+  background: var(--popup-main-color);
+  color: white;
+}
+.srg-calendar .modal-footer {
+  border-top: 1px solid #ddd;
+  border-bottom: none;
+}
+
+.srg-calendar .modal-content {
+  overflow-y: auto;
+  max-height: 400px;
+  margin: 0 0 10px 0;
+}
+.rbc-time-view .rbc-row {
+  box-sizing: border-box;
+  height: 42px;
+}
+.srg-calendar .rbc-time-content .rbc-today{
+  background-color: rgb(255, 255, 255) !important;
+}
+.srg-calendar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.srg-calendar li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.srg-calendar .rbc-agenda-view table.rbc-agenda-table thead > tr > th{
+  font-weight: 400 !important;
+}
+
+.srg-calendar .rbc-agenda-view table.rbc-agenda-table .rbc-agenda-time-cell{
+  border: 1px solid #ddd;
+}
+
+.srg-calendar .rbc-row-content .rbc-row {
+  display: none;
+}
+
+.rbc-row-content .rbc-row:nth-child(1),
+.rbc-row-content .rbc-row:nth-child(2),
+.rbc-row-content .rbc-row:last-child {
+  display: flex; /* or block, depending on your layout needs */
+}
+
+.rbc-agenda-empty{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
