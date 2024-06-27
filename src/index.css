@@ -40,9 +40,7 @@ font-size: 1.3rem;
   font-weight: 600 !important;
 }
 
-.srg-calendar  .rbc-event,.srg-calendar  .rbc-day-slot .rbc-background-event{
-  /* background-color: #1D4B76 !important; */
-}
+
  
 
 /* Define overlay styles */
@@ -208,11 +206,7 @@ color: var(--popup-main-color);
   display: block;
   text-align: center;
 }
-.popup-start {
-  /* text-decoration: underline; */
-  /* border-bottom: 1px solid black; */
 
-}
 @media screen and (max-width:440px) {
   .srg-calendar  .popup-mid{
     width: 1rem;
@@ -228,10 +222,14 @@ color: var(--popup-main-color);
   background: #f0f8ff;
 }
 
-
-.srg-calendar .rbc-time-content .rbc-today{
-  /* background: rgb(173, 220, 231) !important; */
+ .srg-calendar .modall {
+  max-width: 90%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 
 .srg-calendar .rbc-btn-group > button:nth-child(4){
   border-top-left-radius: 4px !important;
@@ -371,7 +369,7 @@ color: var(--popup-main-color);
    color: white;
     height: 100%;
     border-radius:4px ;
-    padding:4px;
+    padding:1px 4px;
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -383,7 +381,7 @@ color: var(--popup-main-color);
     color: white;
      height: 100%;
      border-radius:4px ;
-     padding:4px;
+     padding:1px 4px;
      display: block;
      overflow: hidden;
      text-overflow: ellipsis;
@@ -412,7 +410,7 @@ color: var(--popup-main-color);
   }
 
 
-  /* Modal.css */
+  /* modall.css */
   .srg-calendar .backdrop {
   position: fixed;
   top: 0;
@@ -423,7 +421,7 @@ color: var(--popup-main-color);
   z-index: 5;
 }
 
-.srg-calendar .modal {
+.srg-calendar .modall {
   position: fixed;
   background: white;
   z-index: 6;
@@ -444,8 +442,8 @@ color: var(--popup-main-color);
   padding-top: 0 !important;
 }
 
-.srg-calendar .modal-header,
-.modal-footer {
+.srg-calendar .modall-header,
+.modall-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -454,18 +452,18 @@ color: var(--popup-main-color);
   border-bottom: 1px solid #ddd;
 }
 
-.srg-calendar .modal-header{
+.srg-calendar .modall-header{
   background: var(--popup-main-color);
   color: white;
 }
-.srg-calendar .modal-footer {
+.srg-calendar .modall-footer {
   border-top: 1px solid #ddd;
   border-bottom: none;
 }
 
-.srg-calendar .modal-content {
+.srg-calendar .modall-content {
   overflow-y: auto;
-  max-height: 400px;
+  /* max-height: 400px; */
   margin: 0 0 10px 0;
 }
 .rbc-time-view .rbc-row {
@@ -489,21 +487,29 @@ color: var(--popup-main-color);
 
 .srg-calendar .rbc-agenda-view table.rbc-agenda-table thead > tr > th{
   font-weight: 400 !important;
+  text-align: center;
 }
 
 .srg-calendar .rbc-agenda-view table.rbc-agenda-table .rbc-agenda-time-cell{
   border: 1px solid #ddd;
 }
-
-.srg-calendar .rbc-row-content .rbc-row {
-  display: none;
+.srg-calendar .rbc-agenda-view {
+  border-bottom: 1px solid #ddd;
 }
 
+.srg-calendar .rbc-show-more
+{
+  white-space: pre-wrap; /* Ensure whitespace handling for the show-more text */
+  overflow-wrap: break-word; 
+}
+/* .srg-calendar .rbc-row-content .rbc-row {
+  display: none;
+}
 .rbc-row-content .rbc-row:nth-child(1),
 .rbc-row-content .rbc-row:nth-child(2),
 .rbc-row-content .rbc-row:last-child {
-  display: flex; /* or block, depending on your layout needs */
-}
+  display: flex;
+} */
 
 .rbc-agenda-empty{
   height: 100%;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -6,7 +6,6 @@ import PopUp from "./Popup";
 import axios from "axios";
 import CustomDatepicker from "./CustomDatePicker";
 import Modal from "./Modal";
-import { eventWrapper } from "@testing-library/user-event/dist/utils";
 const App = (props) => {
   const localizer = momentLocalizer(moment);
   const [showPopUp, setShowpopUp] = useState(false);
@@ -14,14 +13,21 @@ const App = (props) => {
   const [loading,setLoading]=useState(true);
   const [apiData, setApiData] = useState([]);
   const [showMoreData,setShowMoreData]=useState([])
-
+  const [token,setToken]=useState("")
   
   const handleSelectSlot = (e) => {
     setPopUpData(e);
     setShowpopUp(true);
   };
-  let token = localStorage.getItem("calendarToken");
+  function resetTimeToMidnight(dateTimeStr) {
+    const datePart = dateTimeStr.split('T')[0];
+
+    return `${datePart}T00:00:00`;
+  }
+
   const callData = async () => {
+    let tokenn = localStorage.getItem("calendarToken");
+    setToken(tokenn);
    const colorCode= props?.clientId === "1"? '#654a8a':props?.clientId === "2"? '#003F2D':"#000000";
    document.documentElement.style.setProperty('--popup-main-color', colorCode);
    document.documentElement.style.setProperty('--popup-light-color', colorCode);
@@ -30,7 +36,7 @@ const App = (props) => {
    if(apiData)
     {
     await axios
-      .get(ApiCall, { headers: { Authorization: `Bearer ${token}` } })
+      .get(ApiCall, { headers: { Authorization: `Bearer ${tokenn}` } })
       .then((res) => {
         if (res.data.success) {
           let updatedArray1 = res.data.data?.TotalAssetsWarrentyDetailsList.map(
@@ -74,8 +80,16 @@ const App = (props) => {
       console.log("Enter valid Client Id")
     }
   };
-
+  const CustomEventContainerWrapper = (event) => {
+    console.log("event",event)
+    return (null
+      // <div style={{ backgroundColor: '#f0f0f0', padding: '10px', borderRadius: '5px' }} {...props}>
+      //   {children}
+      // </div>
+    );
+  };
   const components = {
+    // eventWrapper: CustomEventContainerWrapper,
     event: (props) => {
       const eventType = props?.event?.data?.type;
       switch (eventType) {
@@ -95,10 +109,7 @@ const App = (props) => {
           return null;
       }
     },
-eventWrapper:({children})=>{
-return(<>{children}</>)
-
-}
+   
   };
   
   const [isModalOpen, setModalOpen] = useState(false);
@@ -149,7 +160,7 @@ if(data)
 
   // console.log(typeof props.clientId,)
 
-  if (!token || !props?.clientId || (props.clientId !== "1" && props.clientId !== "2"))
+  if (loading === false && (!token || !props?.clientId || (props.clientId !== "1" && props.clientId !== "2")))
   {
     return <div className="unauthorized-text">Access Denied</div>;
   }

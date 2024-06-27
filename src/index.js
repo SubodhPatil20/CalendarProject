@@ -7,7 +7,7 @@ const dataId = document.getElementById('s_r_g-calendar')?.getAttribute('data-cli
 const root = ReactDOM.createRoot(document.getElementById('s_r_g-calendar'));
 root.render(
   <React.StrictMode>
-    <App clientId={dataId || "2"}/>
+    <App clientId={dataId}/>
   </React.StrictMode>
 );
 
