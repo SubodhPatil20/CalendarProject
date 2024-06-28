@@ -119,10 +119,14 @@ justify-content: space-between;
 
 .srg-calendar .rbc-agenda-view table.rbc-agenda-table thead > tr > th:not(:last-child) {
 width: 97.5px !important;
+min-width: 97.5px !important;
+max-width: 97.5px !important;
 /* background-color: #4CAF50; */
 }
 .srg-calendar .rbc-agenda-view table.rbc-agenda-table tbody > tr > td:not(:last-child)  {
   width: 97.5px !important;
+  min-width: 97.5px !important;
+max-width: 97.5px !important;
   /* background-color: tomato; */
 }
 .srg-calendar .rbc-agenda-view table.rbc-agenda-table .rbc-agenda-time-cell {
@@ -210,6 +214,10 @@ color: var(--popup-main-color);
 @media screen and (max-width:440px) {
   .srg-calendar  .popup-mid{
     width: 1rem;
+  }
+
+  .srg-calendar .srg-select{
+    max-width: 150px;
   }
 }
 
@@ -324,7 +332,9 @@ color: var(--popup-main-color);
   .srg-calendar .copyrighttext{
     font-size: 10px;
   }
-
+.srg-calendar .rbc-btn-group > button:nth-child(3){
+  margin-right: 10px;
+}
 }
 
 @keyframes spin {
@@ -409,6 +419,28 @@ color: var(--popup-main-color);
     border-color: #128cb7 !important;
   }
 
+ .srg-calendar .srg-select{
+  max-width: 150px;
+    color: #373a3c;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    background: none;
+    background-image: none;
+    border: 1px solid #128cb7;
+    padding: 0.32rem 1rem;
+    border-radius: 4px;
+    line-height: normal;
+    white-space: nowrap;
+    /* border-color: #128cb7 !important; */
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+border-right: 0;
+  }
+  select :focus{
+    border-color: #128cb7;
+  }
 
   /* modall.css */
   .srg-calendar .backdrop {

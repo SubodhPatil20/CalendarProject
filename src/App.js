@@ -14,7 +14,9 @@ const App = (props) => {
   const [apiData, setApiData] = useState([]);
   const [showMoreData,setShowMoreData]=useState([])
   const [token,setToken]=useState("")
-  
+  const [allOptions,setAllOptions]=useState([""]);
+  const [selectedOption,setSelectedOption]=useState("")
+  const [beforefilteredData,setBeforeFilteredData]=useState([])
   const handleSelectSlot = (e) => {
     setPopUpData(e);
     setShowpopUp(true);
@@ -25,6 +27,8 @@ const App = (props) => {
     return `${datePart}T00:00:00`;
   }
 
+
+  
   const callData = async () => {
     let tokenn = localStorage.getItem("calendarToken");
     setToken(tokenn);
@@ -43,9 +47,11 @@ const App = (props) => {
             (ele) => {
               return {
                 ...ele,
+                // end: moment(resetTimeToMidnight(ele.EndOfPartsWarrantyRPW)).toDate(),
                 end: moment(ele.EndOfPartsWarrantyRPW).toDate(),
                 categoryName: "Warranty Details",
                 title: ele.AssetsName,
+                // start: moment(resetTimeToMidnight(ele.EndOfPartsWarrantyRPW)).toDate(),
                 start: moment(ele.EndOfPartsWarrantyRPW).toDate(),
                 data: {
                   type: "WarDet",
@@ -58,8 +64,10 @@ const App = (props) => {
               return {
                 ...ele,
                 end: moment(ele.NextDate).toDate(),
+                // end: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
                 categoryName: "Actionable Items",
                 title: ele.ActionName,
+                // start: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
                 start: moment(ele.NextDate).toDate(),
                 data: {
                   type: "ActItm",
@@ -67,12 +75,13 @@ const App = (props) => {
               };
             }
           );
+          setAllOptions(res.data.data.LocationsList)
           setApiData([...updatedArray1, ...updatedArray2]);
+          setBeforeFilteredData([...updatedArray1, ...updatedArray2])
 
         }
         setLoading(false)
       }).catch((err) =>{ 
-        // console.log(err.message, "error in api of calendar");
         setLoading(false)
       });
     }
@@ -88,6 +97,57 @@ const App = (props) => {
       // </div>
     );
   };
+
+  const filterData=(newData)=>{
+    setSelectedOption(newData)
+    if(newData && newData !=="all")
+      {
+        const updatedData=beforefilteredData.filter((ele,ind)=>ele.OutletId === Number(newData));
+        setApiData(updatedData);
+      }
+      else{
+        setApiData(beforefilteredData)
+      }
+  }
+
+  const CustomToolbar = ({ label, onView, onNavigate, views }) => (
+    <div className="rbc-toolbar">
+      <span className="rbc-btn-group">
+        <button type="button" onClick={() => onNavigate("PREV")}>
+          Back
+        </button>
+        <button type="button" onClick={() => onNavigate("TODAY")}>
+          Today
+        </button>
+        <button type="button" onClick={() => onNavigate("NEXT")}>
+          Next
+        </button>
+      </span>
+      <span className="rbc-toolbar-label">{label}</span>
+      <span className="rbc-btn-group">
+      <select className="srg-select" onChange={(e)=>filterData(e.target.value)}  value={selectedOption}>
+      {/* <option value="" disabled >Select Location</option> */}
+      <option value="all" >All Location</option>
+
+{allOptions.map((ele,ind)=>{
+  return(<option key={ind} value={ele.Item2}>{ele.Item1}</option>)
+})}
+      </select>
+      {/* <button type="button" onClick={() => onView("month")}>
+          Month
+        </button> */}
+        <button type="button" onClick={() => onView("week")}>
+          Week
+        </button>
+        <button type="button" onClick={() => onView("day")}>
+          Day
+        </button>
+        <button type="button" className="agendaBtn" onClick={() => onView("agenda")}>
+          Agenda
+        </button>
+      </span>
+    </div>
+  );
   const components = {
     // eventWrapper: CustomEventContainerWrapper,
     event: (props) => {
@@ -109,7 +169,7 @@ const App = (props) => {
           return null;
       }
     },
-   
+   toolbar:CustomToolbar
   };
   
   const [isModalOpen, setModalOpen] = useState(false);
@@ -127,36 +187,7 @@ if(data)
     setShowpopUp(true)
   }
   }
-  const CustomToolbar = ({ label, onView, onNavigate, views }) => (
-    <div class="rbc-toolbar">
-      <span class="rbc-btn-group">
-        <button type="button" onClick={() => onNavigate("PREV")}>
-          Back
-        </button>
-        <button type="button" onClick={() => onNavigate("TODAY")}>
-          Today
-        </button>
-        <button type="button" onClick={() => onNavigate("NEXT")}>
-          Next
-        </button>
-      </span>
-      <span class="rbc-toolbar-label">June 2024</span>
-      <span class="rbc-btn-group">
-        <button type="button" onClick={() => onView("month")}>
-          Month
-        </button>
-        <button type="button" onClick={() => onView("week")}>
-          Week
-        </button>
-        <button type="button" onClick={() => onView("day")}>
-          Day
-        </button>
-        <button type="button" onClick={() => onView("agenda")}>
-          Agenda
-        </button>
-      </span>
-    </div>
-  );
+
 
   // console.log(typeof props.clientId,)
 
@@ -175,16 +206,20 @@ if(data)
       <div>
       <Calendar
       className="calendar-height"
+      dayLayoutAlgorithm='no-overlap'
         localizer={localizer}
         events={apiData}
         startAccessor="start"
         endAccessor="end"
         selectable={true}
         popup={true}
+        defaultView="agenda"
         components={components}
         onShowMore={(e)=>{setShowMoreData(e);setModalOpen(true)}}
-        views={['month', 'week', 'day', 'agenda']}
+        views={['week', 'day', 'agenda','month']}
         onSelectEvent={handleSelectSlot}
+        allDayMaxRows={1}
+        // timeslots={1}
       />
       <PopUp show={showPopUp} handlePopUp={setShowpopUp} data={popUpData} />
       <div className="copyrightfooter"><div>
