@@ -1,5 +1,5 @@
 import React, { Children, useEffect, useState } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer,Views } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import PopUp from "./Popup";
@@ -27,12 +27,13 @@ const App = (props) => {
     return `${datePart}T00:00:00`;
   }
 
+  const callData = async (attempt=0) => {
+    let tokenn =localStorage.getItem('calendarToken');
+    const colorCode= props?.clientId === "1"? '#654a8a':props?.clientId === "2"? '#003F2D':"#000000";
 
-  
-  const callData = async () => {
-    let tokenn = localStorage.getItem("calendarToken");
+    if(tokenn)
+      {
     setToken(tokenn);
-   const colorCode= props?.clientId === "1"? '#654a8a':props?.clientId === "2"? '#003F2D':"#000000";
    document.documentElement.style.setProperty('--popup-main-color', colorCode);
    document.documentElement.style.setProperty('--popup-light-color', colorCode);
    document.documentElement.style.setProperty('--popup-dark-color', colorCode);
@@ -47,12 +48,12 @@ const App = (props) => {
             (ele) => {
               return {
                 ...ele,
-                // end: moment(resetTimeToMidnight(ele.EndOfPartsWarrantyRPW)).toDate(),
-                end: moment(ele.EndOfPartsWarrantyRPW).toDate(),
+                end: moment(resetTimeToMidnight(ele.EndOfPartsWarrantyRPW)).toDate(),
+                // end: moment(ele.EndOfPartsWarrantyRPW).toDate(),
                 categoryName: "Warranty Details",
                 title: ele.AssetsName,
-                // start: moment(resetTimeToMidnight(ele.EndOfPartsWarrantyRPW)).toDate(),
-                start: moment(ele.EndOfPartsWarrantyRPW).toDate(),
+                start: moment(resetTimeToMidnight(ele.EndOfPartsWarrantyRPW)).toDate(),
+                // start: moment(ele.EndOfPartsWarrantyRPW).toDate(),
                 data: {
                   type: "WarDet",
                 },
@@ -63,12 +64,12 @@ const App = (props) => {
             (ele) => {
               return {
                 ...ele,
-                end: moment(ele.NextDate).toDate(),
-                // end: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
+                end: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
+                // end: moment(ele.NextDate).toDate(),
                 categoryName: "Actionable Items",
                 title: ele.ActionName,
-                // start: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
-                start: moment(ele.NextDate).toDate(),
+                start: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
+                // start: moment(ele.NextDate).toDate(),
                 data: {
                   type: "ActItm",
                 },
@@ -88,6 +89,22 @@ const App = (props) => {
     else{
       console.log("Enter valid Client Id")
     }
+  }
+
+  else{
+    if(attempt<4)
+      {
+        console.log("else if working")
+        setTimeout(()=>{
+          callData(attempt+1)
+        },1000)
+      }
+      else{
+        setLoading(false)
+      }
+  }
+
+
   };
   const CustomEventContainerWrapper = (event) => {
     console.log("event",event)
@@ -177,7 +194,7 @@ const App = (props) => {
   const closeModal = () => setModalOpen(false);
 
   useEffect(() => {
-    callData();
+    callData(0);
   }, []);
 
   const addData=(data)=>{
@@ -213,10 +230,10 @@ if(data)
         endAccessor="end"
         selectable={true}
         popup={true}
-        defaultView="agenda"
+        defaultView={Views.AGENDA}
         components={components}
         onShowMore={(e)=>{setShowMoreData(e);setModalOpen(true)}}
-        views={['week', 'day', 'agenda','month']}
+        views={['week', 'day', 'agenda']}
         onSelectEvent={handleSelectSlot}
         allDayMaxRows={1}
         // timeslots={1}
@@ -230,6 +247,7 @@ if(data)
       </div>
       </div>
       }
+
     </div>
   );
 };

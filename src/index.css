@@ -7,9 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 :root {
-  --popup-main-color:white ;
-  --popup-light-color:white ;
-  --popup-dark-color:white;
+  --popup-main-color:rgb(0, 0, 0) ;
+  --popup-light-color:rgb(0, 0, 0) ;
+  --popup-dark-color:rgb(0, 0, 0);
   
   --popup-mid-width: 20px;
 }
@@ -21,7 +21,7 @@ code {
   margin-top: 10px;
   margin-left: 10px;
   margin-right : 10px;
-
+max-width: 100% !important;
 }
 
 .srg-calendar  .rbc-toolbar .rbc-toolbar-label{
@@ -29,6 +29,9 @@ code {
   
 }
 
+.rbc-day-slot .rbc-event{
+  width: fit-content !important;
+}
 
 .srg-calendar  .rbc-toolbar .rbc-toolbar-label {
 font-size: 1.3rem;
@@ -138,6 +141,13 @@ max-width: 97.5px !important;
     vertical-align: top;
     font-weight: 600;
 }
+.rbc-toolbar{
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: white;
+  padding-bottom: 10px;
+}
 
 .srg-calendar  .rbc-event.rbc-background-event{
   z-index: 2;
@@ -202,7 +212,7 @@ color: var(--popup-main-color);
 }
 
 .srg-calendar  .calendar-height{
-  height: 89vh !important;
+ min-height: 89vh !important;
 }
 
 .popup-mid{
@@ -218,6 +228,7 @@ color: var(--popup-main-color);
 
   .srg-calendar .srg-select{
     max-width: 150px;
+    
   }
 }
 
@@ -257,7 +268,7 @@ color: var(--popup-main-color);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* or adjust as needed */
+  height: 70vh; /* or adjust as needed */
 }
 
 .srg-calendar .loader {
@@ -316,7 +327,7 @@ color: var(--popup-main-color);
     margin-top: 10px;
   }
   .srg-calendar .calendar-height{
-    height: 94vh !important;
+    min-height: 94vh !important;
     
   }
 
