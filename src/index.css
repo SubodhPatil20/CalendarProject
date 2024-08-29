@@ -29,6 +29,15 @@ max-width: 100% !important;
   
 }
 
+.srg-calendar .main-toolbars{
+  display: flex;
+  justify-content: center;
+}
+
+.srg-calendar .rbc-toolbar{
+  width: 99%;
+}
+
 .rbc-day-slot .rbc-event{
   width: fit-content !important;
 }
@@ -367,6 +376,9 @@ color: var(--popup-main-color);
     width: 100%;
     justify-content: center;
     margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+
   }
   .srg-calendar  .rbc-toolbar .rbc-toolbar-label{
     display: block !important;

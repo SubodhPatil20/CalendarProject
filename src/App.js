@@ -128,6 +128,7 @@ const App = (props) => {
   }
 
   const CustomToolbar = ({ label, onView, onNavigate, views }) => (
+    <div className="main-toolbars">
     <div className="rbc-toolbar">
       <span className="rbc-btn-group">
         <button type="button" onClick={() => onNavigate("PREV")}>
@@ -163,6 +164,7 @@ const App = (props) => {
           Agenda
         </button>
       </span>
+    </div>
     </div>
   );
   const components = {
@@ -253,3 +255,4 @@ if(data)
 };
 
 export default App;
+
