@@ -249,7 +249,6 @@ if(data)
       </div>
       </div>
       }
-
     </div>
   );
 };
