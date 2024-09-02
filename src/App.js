@@ -64,11 +64,11 @@ const App = (props) => {
             (ele) => {
               return {
                 ...ele,
-                end: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
+                end: moment(resetTimeToMidnight(ele.NextDateNew)).toDate(),
                 // end: moment(ele.NextDate).toDate(),
                 categoryName: "Actionable Items",
                 title: ele.ActionName,
-                start: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
+                start: moment(resetTimeToMidnight(ele.NextDateNew)).toDate(),
                 // start: moment(ele.NextDate).toDate(),
                 data: {
                   type: "ActItm",
