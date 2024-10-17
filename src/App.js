@@ -4,7 +4,6 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import PopUp from "./Popup";
 import axios from "axios";
-import CustomDatepicker from "./CustomDatePicker";
 import Modal from "./Modal";
 const App = (props) => {
   const localizer = momentLocalizer(moment);
@@ -14,8 +13,8 @@ const App = (props) => {
   const [apiData, setApiData] = useState([]);
   const [showMoreData,setShowMoreData]=useState([])
   const [token,setToken]=useState("")
-  const [allOptions,setAllOptions]=useState([""]);
-  const [selectedOption,setSelectedOption]=useState("")
+  const [allOptions,setAllOptions]=useState([]);
+  const [selectedOption,setSelectedOption]=useState("all")
   const [beforefilteredData,setBeforeFilteredData]=useState([])
   const handleSelectSlot = (e) => {
     setPopUpData(e);
@@ -43,9 +42,11 @@ const App = (props) => {
     await axios
       .get(ApiCall, { headers: { Authorization: `Bearer ${tokenn}` } })
       .then((res) => {
-        if (res.data.success) {
-          let updatedArray1 = res.data.data?.TotalAssetsWarrentyDetailsList.map(
-            (ele) => {
+        if (res.data.success) 
+          {
+        
+            let updatedArray1 = res.data.data?.TotalAssetsWarrentyDetailsList.map(
+              (ele) => {
               return {
                 ...ele,
                 end: moment(resetTimeToMidnight(ele.EndOfPartsWarrantyRPW)).toDate(),
@@ -64,11 +65,11 @@ const App = (props) => {
             (ele) => {
               return {
                 ...ele,
-                end: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
+                end: moment(resetTimeToMidnight(ele.NextDateNew || ele.NextDate)).toDate(),
                 // end: moment(ele.NextDate).toDate(),
                 categoryName: "Actionable Items",
                 title: ele.ActionName,
-                start: moment(resetTimeToMidnight(ele.NextDate)).toDate(),
+                start: moment(resetTimeToMidnight(ele.NextDateNew  || ele.NextDate)).toDate(),
                 // start: moment(ele.NextDate).toDate(),
                 data: {
                   type: "ActItm",
@@ -76,10 +77,11 @@ const App = (props) => {
               };
             }
           );
-          setAllOptions(res.data.data.LocationsList)
+          
+          res.data.data?.LocationsList?.length && setAllOptions(res.data.data.LocationsList)
           setApiData([...updatedArray1, ...updatedArray2]);
           setBeforeFilteredData([...updatedArray1, ...updatedArray2])
-
+          
         }
         setLoading(false)
       }).catch((err) =>{ 
@@ -103,11 +105,10 @@ const App = (props) => {
         setLoading(false)
       }
   }
-
-
-  };
-  const CustomEventContainerWrapper = (event) => {
-    console.log("event",event)
+  
+};
+const CustomEventContainerWrapper = (event) => {
+  console.log("event",event)
     return (null
       // <div style={{ backgroundColor: '#f0f0f0', padding: '10px', borderRadius: '5px' }} {...props}>
       //   {children}
@@ -147,13 +148,13 @@ const App = (props) => {
       {/* <option value="" disabled >Select Location</option> */}
       <option value="all" >All Location</option>
 
-{allOptions.map((ele,ind)=>{
+{allOptions.length && allOptions.map((ele,ind)=>{
   return(<option key={ind} value={ele.Item2}>{ele.Item1}</option>)
 })}
       </select>
-      {/* <button type="button" onClick={() => onView("month")}>
+       {/* <button type="button" onClick={() => onView("month")}>
           Month
-        </button> */}
+        </button>  */}
         <button type="button" onClick={() => onView("week")}>
           Week
         </button>
