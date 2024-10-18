@@ -322,6 +322,7 @@ color: var(--popup-main-color);
 }
 
 
+
 .srg-calendar .rbc-btn-group > button:nth-child(4){
   border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
