@@ -65,11 +65,11 @@ const App = (props) => {
             (ele) => {
               return {
                 ...ele,
-                end: moment(resetTimeToMidnight(ele.NextDateNew || ele.NextDate)).toDate(),
+                end: moment(resetTimeToMidnight(ele?.NextDateNew || ele?.NextDate)).toDate(),
                 // end: moment(ele.NextDate).toDate(),
                 categoryName: "Actionable Items",
                 title: ele.ActionName,
-                start: moment(resetTimeToMidnight(ele.NextDateNew  || ele.NextDate)).toDate(),
+                start: moment(resetTimeToMidnight(ele?.NextDateNew  || ele?.NextDate)).toDate(),
                 // start: moment(ele.NextDate).toDate(),
                 data: {
                   type: "ActItm",
@@ -152,9 +152,9 @@ const CustomEventContainerWrapper = (event) => {
   return(<option key={ind} value={ele.Item2}>{ele.Item1}</option>)
 })}
       </select>
-       {/* <button type="button" onClick={() => onView("month")}>
+        <button type="button" onClick={() => onView("month")}>
           Month
-        </button>  */}
+        </button>  
         <button type="button" onClick={() => onView("week")}>
           Week
         </button>
@@ -236,7 +236,7 @@ if(data)
         defaultView={Views.AGENDA}
         components={components}
         onShowMore={(e)=>{setShowMoreData(e);setModalOpen(true)}}
-        views={['week', 'day', 'agenda']}
+        views={['week', 'day', 'agenda','month']}
         onSelectEvent={handleSelectSlot}
         allDayMaxRows={1}
         // timeslots={1}

@@ -258,13 +258,28 @@ color: var(--popup-main-color);
   .srg-calendar .srg-maroon{
     max-width: 160px;
   }
+  
 }
-@media screen and (max-width:375px) {
+@media screen and (max-width:367px) {
   .srg-calendar .srg-byId{
     max-width: 140px;
   }
   .srg-calendar .srg-maroon{
     max-width: 140px;
+  }
+  .rbc-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers items horizontally */
+  }
+
+  .rbc-btn-group button:nth-child(4),
+  .rbc-btn-group button:nth-child(5) {
+    flex: 1 1 100%; /* Makes buttons take full width */
+    display: block; /* Ensures they are block elements */
+    max-width: 120px; /* Prevents them from stretching too wide */
+    margin-top: 5px ; /* Adds spacing and centers them */
+    margin-bottom: 5px ;
   }
 }
 
@@ -286,6 +301,7 @@ color: var(--popup-main-color);
   .srg-calendar .srg-select{
     max-width: 127px !important;
   }
+  
 }
 
 
@@ -621,3 +637,8 @@ border-right: 0;
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 360px) {
+
+}
+
