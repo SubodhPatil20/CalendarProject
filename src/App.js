@@ -28,7 +28,7 @@ const App = (props) => {
 
   const callData = async (attempt=0) => {
     let tokenn =localStorage.getItem('calendarToken');
-    const colorCode= props?.clientId === "1"? '#654a8a':props?.clientId === "2"? '#003F2D':"#000000";
+    const colorCode= props?.clientId === "1"? '#654a8a':props?.clientId === "2"? '#003F2D':'#654a8a';
 
     if(tokenn)
       {
@@ -36,7 +36,7 @@ const App = (props) => {
    document.documentElement.style.setProperty('--popup-main-color', colorCode);
    document.documentElement.style.setProperty('--popup-light-color', colorCode);
    document.documentElement.style.setProperty('--popup-dark-color', colorCode);
-    const ApiCall =props?.clientId === "1"? process.env.REACT_APP_URL_ID_RSCS:props?.clientId === "2"? process.env.REACT_APP_URL_ID_CBRE:"";
+    const ApiCall =props?.clientId === "1"? process.env.REACT_APP_URL_ID_RSCS:props?.clientId === "2"? process.env.REACT_APP_URL_ID_CBRE:process.env.REACT_APP_URL_ID_ASTUTE;
    if(apiData)
     {
     await axios
@@ -211,7 +211,7 @@ if(data)
 
   // console.log(typeof props.clientId,)
 
-  if (loading === false && (!token || !props?.clientId || (props.clientId !== "1" && props.clientId !== "2")))
+  if (loading === false && (!token || !props?.clientId || (props.clientId !== "1" && props.clientId !== "2" && props.clientId !== "3")))
   {
     return <div className="unauthorized-text">Access Denied</div>;
   }
